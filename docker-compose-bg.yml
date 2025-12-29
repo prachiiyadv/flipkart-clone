@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  blue:
+    image: flipkart-app:1.0
+    container_name: flipkart-blue
+    networks:
+      - flipkart-net
+
+  green:
+    image: flipkart-app:2.0
+    container_name: flipkart-green
+    networks:
+      - flipkart-net
+
+  nginx:
+    image: nginx:latest
+    container_name: flipkart-nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - blue
+      - green
+    networks:
+      - flipkart-net
+
+networks:
+  flipkart-net:
