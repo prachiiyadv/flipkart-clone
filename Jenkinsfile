@@ -63,6 +63,14 @@ pipeline {
             }
         }
     }
+        stage('Trivy Image Scan') {
+    steps {
+        sh '''
+        trivy image --exit-code 1 --severity CRITICAL,HIGH flipkart-app:latest
+        '''
+    }
+}
+
 
     post {
 
