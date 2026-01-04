@@ -1,9 +1,6 @@
-version: "3.8"
-
 services:
   ecommerce:
-    image: flipkart-app:1.0
-    container_name: flipkart-app
+    build: .
+    container_name: flipkart-container
     ports:
-      - "80:80"
-    restart: always
+      - "8081:80"
